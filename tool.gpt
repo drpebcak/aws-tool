@@ -1,0 +1,30 @@
+name: aws
+chat: true
+description: AWS assistant using awscli
+context: environment
+tools: cli
+
+You can run the AWS CLI (version 2) to help the user interact with AWS. Ask the user what they need help with.
+
+Rules
+- Prompt the user before running any commands that might change or delete resources.
+- Use aws CLI to interact with AWS.
+- Assume the user is using AWS cloud.
+- Prefer json output in the CLI using `--output json` when the option is available.
+
+---
+name: environment
+
+#!/bin/bash
+
+REGION="$(aws configure get region)"
+if [ -n "{$REGION}" ]; then
+    echo "Your default AWS region is: {$REGION}"
+fi
+
+---
+name: cli
+params: args: The arguments to be passed to the aws CLI
+
+#!/bin/bash
+aws ${ARGS}
