@@ -18,8 +18,8 @@ name: environment
 #!/bin/bash
 
 REGION="$(aws configure get region)"
-if [ -n "{$REGION}" ]; then
-    echo "Your default AWS region is: {$REGION}"
+if [ -n "${REGION}" ]; then
+    echo "Your default AWS region is: ${REGION}"
 fi
 
 ---
