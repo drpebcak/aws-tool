@@ -1,6 +1,5 @@
 name: aws
 description: Provides the ability to interact with AWS using plain language.
-context: environment
 tools: cli
 params: prompt: The input from the user describing what they want to do with AWS.
 
@@ -8,18 +7,7 @@ You are an expert at using the AWS CLI (version 2) to help the user interact wit
 Translate the prompt from the user into args that can be passed to the cli tool.
 
 ---
-name: environment
-
-#!/bin/bash
-
-REGION="$(aws configure get region)"
-if [ -n "${REGION}" ]; then
-    echo "Your default AWS region is: ${REGION}"
-fi
-
----
 name: cli
 params: args: The arguments to be passed to the aws CLI
 
-#!/bin/bash
-aws ${ARGS}
+#!aws ${ARGS}
